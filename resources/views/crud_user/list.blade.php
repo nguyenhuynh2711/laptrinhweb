@@ -22,8 +22,8 @@
                         <th>ID</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
+                        <!--  -->
+                        <!--  -->
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -33,8 +33,8 @@
                         <th>{{ $user->id }}</th>
                         <th>{{ $user->name }}</th>
                         <th>{{ $user->email }}</th>
-                        <th>{{ $user->phone }}</th>
-                        <th>{{ $user->address }}</th>
+                        <!--  -->
+                        <!--  -->
                         <th>
                             <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                             <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
