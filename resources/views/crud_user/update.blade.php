@@ -16,7 +16,22 @@
         </div>
         <div class="update-box">
             <h2>Update user</h2>
-            <form action="{{ route('user.postUpdateUser') }}" method="POST">
+            <form action="{{ route('user.postUpdateUser') }}" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="avatar">Hình đại diện</label>
+                    <input type="file" id="avatar" class="form-control" name="avatar" accept="image/*">
+                    @if($user->avatar)
+                    <div class="current-avatar">
+                        <p>Hình ảnh hiện tại:</p>
+                        <img src="{{ url('get-avatar/' . $user->avatar) }}" alt="{{ $user->name }}'s avatar" width="100">
+                    </div>
+                    @else
+                    <div class="current-avatar">
+                        <p>Chưa có hình đại diện</p>
+                    </div>
+                    @endif
+                </div>
+
                 @csrf
                 <input name="id" type="hidden" value="{{$user->id}}">
                 <div class="input-group">

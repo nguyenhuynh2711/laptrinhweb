@@ -60,17 +60,25 @@ class CrudUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = $request->all();
-        $check = User::create([
+
+        // Xử lý upload hình ảnh
+        $avatarName = null;
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('public/avatars', $avatarName);
+        }
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-
             'age' => $data['age'],
             'facebook' => $data['facebook'],
-            //
-            //
+            'avatar' => $avatarName, // Lưu tên file avatar
             'password' => Hash::make($data['password'])
         ]);
 
@@ -119,27 +127,34 @@ class CrudUserController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,id,' . $input['id'],
-            'password' => 'required|min:6', // Cho phép password rỗng (nếu không muốn đổi mật khẩu)
+            'email' => 'required|email|unique:users,email,' . $input['id'],
+            'password' => 'nullable|min:6',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $user = User::find($input['id']);
+        $user = User::find($input['id']); // Lấy user hiện tại từ database
+
         $user->name = $input['name'];
         $user->email = $input['email'];
-
         $user->age = $input['age'];
         $user->facebook = $input['facebook'];
-        //
-        //
 
-        // Kiểm tra nếu password có nhập thì mới update, nếu không thì giữ nguyên mật khẩu cũ
+        // Xử lý upload hình ảnh
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('public/avatars', $avatarName);
+            $user->avatar = $avatarName; // Lưu tên file avatar
+        }
+
+        // Kiểm tra nếu password có nhập thì mới update
         if (!empty($input['password'])) {
             $user->password = Hash::make($input['password']);
         }
 
         $user->save();
 
-        return redirect("list")->withSuccess('You have signed-in');
+        return redirect("list")->withSuccess('User updated successfully');
     }
 
     /**

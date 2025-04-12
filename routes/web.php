@@ -33,6 +33,25 @@ Route::get('list', [CrudUserController::class, 'listUser'])->name('user.list');
 
 Route::get('signout', [CrudUserController::class, 'signOut'])->name('signout');
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
+
+Route::get('get-avatar/{filename}', function ($filename) {
+    $path = storage_path('app/public/avatars/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

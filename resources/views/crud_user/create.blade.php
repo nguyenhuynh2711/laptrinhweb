@@ -16,7 +16,7 @@
         </div>
         <div class="register-box">
             <h2>Màn hình đăng ký</h2>
-            <form action="{{ route('user.postUser') }}" method="POST">
+            <form action="{{ route('user.postUser') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="input-group">
                     <label for="username">Username</label>
@@ -43,6 +43,15 @@
                         name="facebook" required autofocus>
                     @if ($errors->has('facebook'))
                     <span class="text-danger">{{ $errors->first('facebook') }}</span>
+                    @endif
+                </div>
+
+                <!-- Avatar -->
+                <div class="input-group">
+                    <label for="avatar">Add picture</label>
+                    <input type="file" id="avatar" class="form-control" name="avatar" accept="image/*">
+                    @if ($errors->has('avatar'))
+                    <span class="text-danger">{{ $errors->first('avatar') }}</span>
                     @endif
                 </div>
 
