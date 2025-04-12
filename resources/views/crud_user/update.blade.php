@@ -43,7 +43,23 @@
                 </div>
 
                 <!--  -->
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="text" placeholder="Age" id="age" class="form-control"
+                        name="age" value="{{ $user->age }}">
+                    @if ($errors->has('age'))
+                    <span class=" text-danger">{{ $errors->first('age') }}</span>
+                    @endif
+                </div>
                 <!--  -->
+                <div class="input-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="text" placeholder="facebook" id="facebook" class="form-control"
+                        name="facebook" value="{{ $user->facebook }}">
+                    @if ($errors->has('facebook'))
+                    <span class="text-danger">{{ $errors->first('facebook') }}</span>
+                    @endif
+                </div>
 
                 <div class="input-group">
                     <label for="password">Password</label>

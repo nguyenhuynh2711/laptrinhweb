@@ -66,6 +66,9 @@ class CrudUserController extends Controller
         $check = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+
+            'age' => $data['age'],
+            'facebook' => $data['facebook'],
             //
             //
             'password' => Hash::make($data['password'])
@@ -124,6 +127,8 @@ class CrudUserController extends Controller
         $user->name = $input['name'];
         $user->email = $input['email'];
 
+        $user->age = $input['age'];
+        $user->facebook = $input['facebook'];
         //
         //
 

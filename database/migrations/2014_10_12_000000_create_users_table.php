@@ -17,6 +17,8 @@ return new class extends Migration
 
             //
             //
+            $table->integer('age');
+            $table->string('facebook', 255);
 
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

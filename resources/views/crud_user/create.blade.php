@@ -27,9 +27,24 @@
                     @endif
                 </div>
 
-                <!-- Phone -->
-
-                <!-- Address -->
+                <!-- Age -->
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="text" placeholder="Age" id="age" class="form-control"
+                        name="age" required autofocus>
+                    @if ($errors->has('age'))
+                    <span class="text-danger">{{ $errors->first('age') }}</span>
+                    @endif
+                </div>
+                <!-- Face -->
+                <div class="input-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="text" placeholder="Facebook" id="facebook" class="form-control"
+                        name="facebook" required autofocus>
+                    @if ($errors->has('facebook'))
+                    <span class="text-danger">{{ $errors->first('facebook') }}</span>
+                    @endif
+                </div>
 
                 <div class="input-group">
                     <label for="email">Email</label>
