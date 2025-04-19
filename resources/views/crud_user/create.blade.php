@@ -27,25 +27,7 @@
                     @endif
                 </div>
 
-                <!-- Phone -->
-                <div class="input-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" placeholder="Phone" id="phone" class="form-control"
-                        name="phone" required autofocus>
-                    @if ($errors->has('phone'))
-                    <span class="text-danger">{{ $errors->first('phone') }}</span>
-                    @endif
-                </div>
 
-                <!-- Address -->
-                <div class="input-group">
-                    <label for="address">Address</label>
-                    <input type="text" placeholder="address" id="address" class="form-control"
-                        name="address" required autofocus>
-                    @if ($errors->has('address'))
-                    <span class="text-danger">{{ $errors->first('address') }}</span>
-                    @endif
-                </div>
 
                 <div class="input-group">
                     <label for="email">Email</label>

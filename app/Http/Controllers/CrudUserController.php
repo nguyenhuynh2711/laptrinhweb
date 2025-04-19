@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * CRUD User controller
@@ -66,8 +68,7 @@ class CrudUserController extends Controller
         $check = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
+
             'password' => Hash::make($data['password'])
         ]);
 
@@ -124,8 +125,7 @@ class CrudUserController extends Controller
         $user->name = $input['name'];
         $user->email = $input['email'];
 
-        $user->phone = $input['phone'];
-        $user->address = $input['address'];
+
 
         // Kiểm tra nếu password có nhập thì mới update, nếu không thì giữ nguyên mật khẩu cũ
         if (!empty($input['password'])) {
@@ -142,9 +142,11 @@ class CrudUserController extends Controller
      */
     public function listUser()
     {
+
         if (Auth::check()) {
-            $users = User::all();
-            return view('crud_user.list', ['users' => $users]);
+            return view('crud_user.list', [
+                'users' => User::with('roles')->paginate(10)
+            ]);
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');

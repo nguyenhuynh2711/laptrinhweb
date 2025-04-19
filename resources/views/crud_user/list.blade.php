@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách người dùng</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- Thêm đường link sử dụng bootstrap để chạy pagination -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,8 +25,7 @@
                         <th>ID</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
+                        <th>Roles</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -33,8 +35,13 @@
                         <th>{{ $user->id }}</th>
                         <th>{{ $user->name }}</th>
                         <th>{{ $user->email }}</th>
-                        <th>{{ $user->phone }}</th>
-                        <th>{{ $user->address }}</th>
+                        <th>
+                            @foreach($user->roles as $role)
+                            <a href="{{ route('user.role', ['id' => $role->id]) }}">
+                                {{ $role->name . '-' }}
+                            </a>
+                            @endforeach
+                        </th>
                         <th>
                             <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                             <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
@@ -45,6 +52,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination-container">
+            {!! $users->withQueryString()->links('pagination::bootstrap-5') !!}
+        </div>
+
         <div class="footer">
             Lập Trình Web By Nguyễn Huỳnh 22/3/2025
         </div>

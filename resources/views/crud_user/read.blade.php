@@ -20,8 +20,7 @@
                 <p><strong>ID:</strong> <span>{{$messi->id}}</span></p>
                 <p><strong>Name:</strong> <span>{{$messi->name}}</span></p>
                 <p><strong>Email:</strong> <span>{{$messi->email}}</span></p>
-                <p><strong>Phone:</strong> <span>{{$messi->phone}}</span></p>
-                <p><strong>Address:</strong> <span>{{$messi->address}}</span></p>
+
             </div>
 
             <a href="{{ route('user.updateUser', ['id' => $messi->id]) }}">Edit</a>
