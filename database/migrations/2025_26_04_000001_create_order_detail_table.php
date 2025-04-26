@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('order_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('order_id');
+            $table->integer('product_id');
 
-            $table->string('description')->nullable(); // Thêm trường description
+            $table->integer('quantity');
+            $table->string('notes', 255);
 
             $table->timestamps();
         });
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('role');
+        Schema::dropIfExists('order_detail');
     }
 };

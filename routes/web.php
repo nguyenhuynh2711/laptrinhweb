@@ -5,6 +5,8 @@ use App\Http\Controllers\CrudUserController;
 
 use App\Http\Controllers\RoleController;
 
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +43,10 @@ Route::get('role', [RoleController::class, 'role'])->name('user.role');
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Thêm routes mới cho orders
+// Route::get('user/orders', [OrderController::class, 'userOrders'])->name('user.orders');
+
+Route::get('user/{user_id}/orders', [OrderController::class, 'userOrders'])->name('user.orders');
+
+Route::get('order/detail', [OrderController::class, 'orderDetail'])->name('order.detail');

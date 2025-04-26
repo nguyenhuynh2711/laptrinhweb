@@ -1,0 +1,148 @@
+/* Main Container */
+.order-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Header Section */
+.order-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.order-header h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.user-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.user-info h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.user-info h2 span {
+    color: #3498db;
+}
+
+.user-info p {
+    margin: 5px 0 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Tables */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+
+.order-table, .detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.order-table th, .detail-table th {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.order-table td, .detail-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.order-table tr:nth-child(even), .detail-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.order-table tr:hover, .detail-table tr:hover {
+    background-color: #f1f7fd;
+}
+
+/* Order Details Specific */
+.detail-table th {
+    background-color: #2ecc71;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-name {
+    font-weight: 500;
+}
+
+.notes {
+    font-style: italic;
+    color: #7f8c8d;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-orders {
+    text-align: center;
+    color: #e74c3c;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .order-table, .detail-table {
+        display: block;
+    }
+    
+    .order-table thead, .detail-table thead {
+        display: none;
+    }
+    
+    .order-table tr, .detail-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    
+    .order-table td, .detail-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: none;
+    }
+    
+    .order-table td::before, .detail-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+        color: #3498db;
+    }
+    
+    .notes {
+        max-width: 100%;
+    }
+
+    .amount-warning {
+        color: #e74c3c;
+        font-weight: bold;
+        cursor: help;
+        margin-left: 5px;
+    }
+}
