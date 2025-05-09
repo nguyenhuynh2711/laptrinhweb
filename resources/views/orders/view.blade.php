@@ -30,7 +30,7 @@
                         <td>#{{ $order->id }}</td>
 
                         <td>
-                            {{ number_format($order->total_amount) }} đ
+                            {{ number_format($order->calculated_total) }} đ
                             @if($order->total_amount != $order->calculated_total)
                             <span class="amount-warning" title="Tổng tiền không khớp với chi tiết đơn hàng">
                                 (!)
